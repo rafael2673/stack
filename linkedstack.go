@@ -13,14 +13,35 @@ type LinkedStack struct {
 }
 
 func (stack *LinkedStack) Push(val int) {
+	newNode := &Node{val: val, next: nil}
+	if stack.head == nil {
+		stack.head = newNode
+	} else {
+		newNode.next = stack.head
+		stack.head = newNode
+	}
+	stack.size++
 }
 
 func (stack *LinkedStack) Pop() (int, error) {
-	return -1, errors.New("error msg")
+	if stack.size > 0 {
+		current := stack.head
+		if stack.size > 1 {
+			stack.head = stack.head.next
+		} else {
+			stack.head = nil
+		}
+		stack.size--
+		return current.val, nil
+	}
+	return -1, errors.New("stack is empty")
 }
 
 func (stack *LinkedStack) Peek() (int, error) {
-	return -1, errors.New("error msg")
+	if stack.size > 0 {
+		return stack.head.val, nil
+	}
+	return -1, errors.New("stack is empty")
 }
 
 func (stack *LinkedStack) IsEmpty() bool {
