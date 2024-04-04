@@ -3,7 +3,7 @@ package stack
 import "errors"
 
 type Node struct {
-	val  int
+	val  interface{}
 	next *Node
 }
 
@@ -12,7 +12,7 @@ type LinkedStack struct {
 	size int
 }
 
-func (stack *LinkedStack) Push(val int) {
+func (stack *LinkedStack) Push(val interface{}) {
 	newNode := &Node{val: val, next: nil}
 	if stack.head == nil {
 		stack.head = newNode
@@ -23,7 +23,7 @@ func (stack *LinkedStack) Push(val int) {
 	stack.size++
 }
 
-func (stack *LinkedStack) Pop() (int, error) {
+func (stack *LinkedStack) Pop() (interface{}, error) {
 	if stack.size > 0 {
 		current := stack.head
 		if stack.size > 1 {
@@ -37,7 +37,7 @@ func (stack *LinkedStack) Pop() (int, error) {
 	return -1, errors.New("stack is empty")
 }
 
-func (stack *LinkedStack) Peek() (int, error) {
+func (stack *LinkedStack) Peek() (interface{}, error) {
 	if stack.size > 0 {
 		return stack.head.val, nil
 	}
