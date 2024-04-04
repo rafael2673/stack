@@ -24,9 +24,9 @@ func (stack *LinkedStack) Peek() (int, error) {
 }
 
 func (stack *LinkedStack) IsEmpty() bool {
-	return false
+	return stack.size == 0
 }
 
 func (stack *LinkedStack) Size() int {
-	return 0
+	return stack.size
 }
