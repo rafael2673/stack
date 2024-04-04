@@ -12,7 +12,7 @@ func (stack *ArrayStack) Init(size int) error {
 		stack.values = make([]int, size)
 		return nil
 	} else {
-		return errors.New("Can't init ArrayStack with size <= 0")
+		return errors.New("can't init ArrayStack with size <= 0")
 	}
 }
 
@@ -26,9 +26,27 @@ func (stack *ArrayStack) doubleArray() {
 	stack.values = doubledValues
 }
 
-func (stack *ArrayStack) Push(val int)
-func (stack *ArrayStack) Pop() (int, error)
-func (stack *ArrayStack) Peek() (int, error)
+func (stack *ArrayStack) Push(val int) {
+	if len(stack.values) == stack.size {
+		stack.doubleArray()
+	}
+	stack.values[stack.size] = val
+	stack.size++
+}
+func (stack *ArrayStack) Pop() (int, error) {
+	if stack.size > 0 {
+		stack.size--
+		return stack.values[stack.size], nil
+	}
+	return -1, errors.New("empty stack")
+
+}
+func (stack *ArrayStack) Peek() (int, error) {
+	if stack.size > 0 {
+		return stack.values[stack.size-1], nil
+	}
+	return -1, errors.New("empty stack")
+}
 func (stack *ArrayStack) IsEmpty() bool {
 	return stack.size == 0
 }
