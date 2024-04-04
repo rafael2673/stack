@@ -1,9 +1,9 @@
 package stack
 
 type IStack interface {
-	Push(value int)
-	Pop() (int, error)
-	Peek() (int, error)
+	Push(value interface{})
+	Pop() (interface{}, error)
+	Peek() (interface{}, error)
 	IsEmpty() bool
 	Size() int
 }

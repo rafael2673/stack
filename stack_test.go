@@ -5,16 +5,17 @@ import (
 )
 
 var size int
-var stacks [1]IStack
 
-//var stacks [2]IStack
+// var stacks [1]IStack
+
+var stacks [2]IStack
 
 func createStacks(size int) {
 	arraystack := &ArrayStack{}
-	//linkedlist_stack := &LinkedListStack{}
+	linkedstack := &LinkedStack{}
 	(*arraystack).Init(size)
-	stacks = [1]IStack{arraystack}
-	//stacks = [2]IStack{arraystack, linkedlist_stack}
+	//stacks = [1]IStack{arraystack}
+	stacks = [2]IStack{arraystack, linkedstack}
 
 }
 
